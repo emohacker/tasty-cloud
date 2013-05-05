@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app>
+	<head>
+		<title><%= title %></title>
+		<link rel='stylesheet' href='/vendor/bootstrap/bootstrap.css' />
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<script type="text/javascript" src="/vendor/jquery.min.1.9.js"></script>
+		<script type="text/javascript" src="/vendor/angular.min.js"></script>
+		<script type="text/javascript" src="/client/controller.js"></script>
+	</head>
+	<body>
+		<div class="container" ng-controller="LoginForm">
+			<form id="login_frame" ng-submit="login()">
+				<h1>用户登录</h1>
+				<div class="alert alert-error none" ng-class="showerr">
+					{{error}}
+				</div>
+				<fieldset>
+					<input class="input-block-level" placeholder="用户名" type="text" ng-model="form.username" value="{{form.username}}" size="20"/>
+					<input type="password" class="input-block-level" placeholder="密码" ng-model="form.password" size="20"/>
+					<input class="btn btn-primary" type="submit" value="登录"/>
+				</fieldset>
+			</form>
+		</div>
+	</body>
+</html>

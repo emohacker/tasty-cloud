@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="tastycloud">
+	<head>
+		<title><%= title %></title>
+		<link rel='stylesheet' href='/vendor/bootstrap/bootstrap.css' />
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<script type="text/javascript" src="/vendor/jquery.min.1.9.js"></script>
+		<script type="text/javascript" src="/vendor/angular.min.js"></script>
+		<script type="text/javascript" src="/vendor/bootstrap/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/client/app.js"></script>
+		<script type="text/javascript" src="/client/controller.js"></script>
+		<script type="text/javascript" src="/client/service.js"></script>
+		<script type="text/javascript" src="/vendor/angular-resource.js"></script>
+		
+		<script type="text/javascript">
+
+		</script>
+	</head>
+	<body>
+		<header id="header" class="clearfix">
+			<a id="logo" class="left" title="Tasty Cloud" href="/">Tasty Cloud 餐饮管理系统</a>
+			<a class="logout right" title="退出系统" href="/api/logout">退出系统</a>
+		</header>
+		<div id="main" class="clearfix" ng-controller="MainFrameCtrl">
+			<div id="main_left">
+				<div class="bar-holder">
+				</div>
+				<ul class="main-menu clearfix">
+					<% 
+					if(user.functions!==undefined){
+						for(var i=0;i<user.functions.length;i++){ %>
+					<li>
+						<a class="first <%= i==0?'active':''%>" title="<%= user.functions[i].title%> " href="#<%= user.functions[i].url%>">
+							<span class="s"></span>
+							<span class="t"><%= user.functions[i].title%></span>
+							<i></i>
+						</a>
+					</li>
+					<% }
+					}else{
+					%>
+					<li>No Functions</li>
+					<%
+					}
+					%>
+				</ul>
+			</div>
+			<div id="main_right">
+				<div ng-view>
+					
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="/javascripts/util.js"></script>
+		<script type="text/javascript" src="/javascripts/window.js"></script>
+	</body>
+</html>
+

@@ -1,0 +1,98 @@
+<div class="tab-bar">
+	<ul class="clearfix">
+		<li><a href="javascript:;" class="active" title="出品列表">出品列表</a></li>
+		<li><a href="#/productcate" title="出品分类">出品分类</a></li>
+	</ul>
+</div>
+<div class="main-container">
+	<div class="warp15">
+		<div class="function-bar ">
+			<a href="#saveForm" role="button" class="btn btn-success " data-toggle="modal">新增</a>
+		</div>
+		<div class="list">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th class="col-id">#</th>
+						<th>品名</th>
+						<th class="col-80">首字母</th>
+						<th class="col-80">所属品类</th>
+						<th class="col-80">参考价格</th>
+						<th class="col-80">销售提成</th>
+						<th class="col-100">发布日期</th>
+						<th class="col-60"></th>
+						<th class="col-60"></th>
+					</tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<td colspan="9">
+							<div class="btn-group">
+								<button class="btn" ng-disabled="currentPage == 1" ng-click="prvPage()"> 上一页</button>
+								<button class="btn">{{currentPage}}/{{numberOfPages()}}</button>
+								<button class="btn"  ng-disabled="currentPage >= numberOfPages()" ng-click="nextPage()">下一页</button>
+							</div>
+						</td>
+					</tr>
+				</tfoot>
+				<tbody>
+					<tr ng-repeat="item in list">
+						<td>{{(currentPage-1)*10+$index+1}}</td>
+						<td>{{item.title}}</td>
+						<td>{{item.initial}}</td>
+						<td>{{item.catename}}</td>
+						<td>{{item.price}}</td>
+						<td>{{item.waiter_share}}</td>
+						<td>{{item.release_date | date:'yyyy-MM-dd'}}</td>
+						<td><a href="#saveForm" role="button" class="btn btn-small btn-info" data-toggle="modal" ng-click="editTarget(item)">编辑</a></td>
+						<td><a href="#deleteForm" role="button" class="btn btn-small btn-danger" data-toggle="modal" ng-click="deleteTarget(item)">删除</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<!-- Modal -->
+<div id="saveForm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="saveLabel" aria-hidden="true">
+	<div class="modal-header">
+		<h3 id="saveLabel">{{editLabel}}数据</h3>
+	</div>
+	<div class="modal-body">
+		<form>
+			<fieldset>
+				<label>品名</label>
+				<input ng-model="editForm.title" type="text" placeholder="输入名称">
+				<label>首字母</label>
+				<input ng-model="editForm.initial" type="text" placeholder="输入名称首字母">
+				<label>所属品类</label>
+				<select ng-model="editForm.catid" ng-options="cate.id as cate.title for cate in productsCate">
+				</select>
+				<label>参考价格</label>
+				<input ng-model="editForm.price" type="text" placeholder="输入金额">￥
+				<label>销售提成</label>
+				<input ng-model="editForm.waiter_share" type="text" placeholder="输入金额">￥
+				<input type="hidden" ng-model="editForm.release_date" value="{{editForm.release_date | date:'yyyy-MM-dd'}}" /> 
+				<input type="hidden" ng-model="editForm.id" value="0" /> 
+			</fieldset>
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		<button class="btn btn-primary" ng-click="saveItem()"  data-dismiss="modal" aria-hidden="true">保存</button>
+	</div>
+</div>
+
+<!-- Modal -->
+<div id="deleteForm" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
+	<div class="modal-header">
+		<h3 id="deleteLabel">删除数据</h3>
+	</div>
+	<div class="modal-body">
+		确定要删除该条数据吗？
+	</div>
+	<div class="modal-footer">
+		<button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+		<button class="btn btn-primary" ng-click="deleteItem()"  data-dismiss="modal" aria-hidden="true">确定</button>
+	</div>
+</div>

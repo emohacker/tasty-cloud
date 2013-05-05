@@ -1,0 +1,15 @@
+{
+  "name": "tastycloud",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "",
+    "ejs": "*",
+    "less-middleware": "*",
+    "redis": "~0.8.2",
+    "connect-redis": "~1.4.5"
+  }
+}
