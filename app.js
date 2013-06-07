@@ -18,7 +18,7 @@ app.configure(function(){
   app.use(express.static(path.join(__dirname, 'public')));
   app.use(express.cookieParser());
   app.use(express.session({store:redisInstance,secret:'tasty_cloud'}));
-  app.use(app.router);//注意，这一行放在session后面
+  app.use(app.router);
 });
 
 

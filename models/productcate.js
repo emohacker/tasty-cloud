@@ -10,8 +10,10 @@ var ProductCate = ModelBase.create({
 		var sql=''
 			, orderby = this.req.params && this.req.params.orderby
 		 	, page  =  this.req.params && this.req.params.page
-		 	, limit = this.req.params && this.req.params.limit;
-		this.targetId = this.req.params && this.req.params.id;//路径中含有id时查询单个记录
+		 	, limit = this.req.params && this.req.params.limit;\
+		 	
+		//路径中含有id时查询单个记录
+		this.targetId = this.req.params && this.req.params.id;
 		if(this.targetId!==undefined){
 			if(this.targetId == 0){ 
 				sql = 'SELECT count(id) listcount FROM '+this.db_table;

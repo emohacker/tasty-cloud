@@ -40,28 +40,34 @@ function scopeInitial($scope,Model){
 			limit:$scope.pageSize
 		});	
 	}
+
 	//获取总记录数
 	$scope.listCount = Model.get({
 		id:0
 	});
+
 	//计算总页数
     $scope.numberOfPages = function(){
     	return Math.ceil($scope.listCount.listcount/$scope.pageSize);
     };
+
 	//上一页
 	$scope.prvPage = function(){
 		$scope.currentPage -=1;
 		$scope.updateList();
 	};
+
 	//下一页
 	$scope.nextPage = function(){
 		$scope.currentPage +=1;
 		$scope.updateList();
 	};
+
 	//删除记录前，定位删除的记录
 	$scope.deleteTarget = function(item){
 		$scope.itemIDForDelete = item.id;
 	};
+
 	//确定删除记录
 	$scope.deleteItem = function(){
 		if($scope.itemIDForDelete!==undefined){	
@@ -70,6 +76,7 @@ function scopeInitial($scope,Model){
 			});
 		}
 	};
+	
 	//新增或修改记录的保存
 	$scope.saveItem = function(){
     	var item = new Model($scope.editForm);

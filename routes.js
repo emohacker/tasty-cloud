@@ -9,6 +9,7 @@ module.exports = function(app) {
 	app.get('/login', initial.login);
 	app.get('/api/logout', initial.logout);
 	app.post('/api/login/auth', acl.authFromClient);
+	
 	//出品类别管理
 	app.get('/api/productcate/:orderby/:page/:limit', acl.auth, productCate.query);
 	app.get('/api/productcate/:id', acl.auth, productCate.query);

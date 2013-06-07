@@ -1,6 +1,6 @@
 //var db = require('./db').MongoDB.getDB();
 var dbPool = require('../libs/db').MySQL.getMySQLPool();
-exports.auth= function(req,res,next){
+exports.auth= function(req, res, next){
 	if (req.session.userInfo) {
 		return next();
 	}else{
@@ -10,7 +10,7 @@ exports.auth= function(req,res,next){
 /*
 	登录验证接口
 */
-exports.authFromClient = function(req,res){
+exports.authFromClient = function(req, res){
 	var crypto = require('crypto'),
 		hasher = crypto.createHash('md5'),
 		username = req.body.username,
